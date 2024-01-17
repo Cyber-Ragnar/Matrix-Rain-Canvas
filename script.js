@@ -81,7 +81,7 @@ class Effect {
         }
     }
 
-    resize(width, height) {
+    onResize(width, height) {
         // Update canvas dimensions and reinitialize symbols
         this.canvasWidth = width;
         this.canvasHeight = height;
@@ -96,12 +96,12 @@ const effect = new Effect(canvas.width, canvas.height);
 
 // Animation variables
 let lastTime = 0;
-const fps = 18;
+const fps = 18; // adjust frame rate here for your own taste 
 const nextFrame = 1000 / fps;
 let timer = 0;
 
 // Animation function
-function animate(timeStamp) {
+function animation(timeStamp) {
     const deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
 
@@ -127,16 +127,16 @@ function animate(timeStamp) {
     }
 
     // Request the next animation frame
-    requestAnimationFrame(animate);
+    requestAnimationFrame(animation);
 }
 
 // Start the animation
-animate(0);
+animation(0);
 
 // Resize event listener
 window.addEventListener('resize', function () {
     // Update canvas dimensions and reinitialize symbols
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    effect.resize(canvas.width, canvas.height);
+    effect.onResize(canvas.width, canvas.height);
 });
